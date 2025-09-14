@@ -1,6 +1,86 @@
-<p>products works!</p>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Products</h3>
+    <button class="btn btn-primary" (click)="showForm = !showForm">
+      {{ showForm ? 'Close' : 'Add Product' }}
+    </button>
+  </div>
+
+  <!-- Add product form -->
+  @if(showForm){
+  <div class="card p-3 mb-3">
+    <h5>Add New Product</h5>
+    <form (ngSubmit)="addProduct()">
+      <div class="mb-2">
+        <input
+          [(ngModel)]="name"
+          name="name"
+          class="form-control"
+          placeholder="Product Name"
+          required
+        />
+      </div>
+      <div class="mb-2">
+        <textarea
+          [(ngModel)]="description"
+          name="description"
+          class="form-control"
+          placeholder="Description"
+          required
+        ></textarea>
+      </div>
+      <div class="mb-2">
+        <input type="file" (change)="onFileChange($event)" class="form-control" required />
+      </div>
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+      <div>
+        <input type="checkbox" >
+      </div>
+      <button class="btn btn-success" [disabled]="loading">
+        {{ loading ? 'Adding...' : 'Add Product' }}
+      </button>
+    </form>
+  </div>
+  }
+
+  <!-- Show products -->
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Image URL</th>
+        <th>Status</th>
+        <th>View</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr *ngFor="let p of products">
+        <td>{{ p.name }}</td>
+        <td>{{ p.description }}</td>
+        <td><img [src]="p.imageUrl" alt="img" width="80"  class="pointer-events-none"/></td>
+        <td>
+          <a [href]="p.imageUrl" target="_blank">{{ p.imageUrl | slice : 0 : 30 }}...</a>
+        </td>
+        <td>{{ p.isActive ? 'active' : 'Inactive' }}</td>
+        <td><button class="btn btn-tertiary bi bi-eye outline-none"></button></td>
+<td><button class="btn btn-tertiary bi bi-pencil-square outline-none"></button></td>
+<td><button class="btn btn-tertiary bi bi-trash outline-none"></button></td>
+
+        <!-- <td><i class="bi bi-trash3"></i></td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- <p>products works!</p>
 <button
 onclick=""
 class="btn btn-primary" (click)="logout()">
     logout
-</button>
+</button> -->
