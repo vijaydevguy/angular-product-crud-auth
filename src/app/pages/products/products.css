@@ -1,0 +1,41 @@
+/* View button styling */
+.btn.bi-eye {
+  color: #007bff;
+  border: 1px solid #007bff;
+  transition: all 0.2s ease;
+}
+
+.btn.bi-eye:hover {
+  background-color: #007bff;
+  color: white;
+  transform: scale(1.05);
+}
+
+.btn.bi-eye:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Table button styling improvements */
+.btn.bi-pencil-square {
+  color: #28a745;
+  border: 1px solid #28a745;
+  transition: all 0.2s ease;
+}
+
+.btn.bi-pencil-square:hover {
+  background-color: #28a745;
+  color: white;
+  transform: scale(1.05);
+}
+
+.btn.bi-trash {
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  transition: all 0.2s ease;
+}
+
+.btn.bi-trash:hover {
+  background-color: #dc3545;
+  color: white;
+  transform: scale(1.05);
+}

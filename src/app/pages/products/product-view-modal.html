@@ -1,0 +1,78 @@
+<!-- Product View Modal -->
+<div class="modal fade" id="productViewModal" tabindex="-1" aria-hidden="true" (click)="onBackdropClick($event)">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h5 class="modal-title">Product Details</h5>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="selectedProduct">
+        <div class="row">
+          <!-- Product Image -->
+          <div class="col-md-6 mb-3">
+            <div class="product-image-container">
+              <img 
+                [src]="selectedProduct.imageUrl" 
+                [alt]="selectedProduct.name" 
+                class="img-fluid rounded product-image"
+                (error)="onImageError($event)"
+              />
+            </div>
+          </div>
+          
+          <!-- Product Details -->
+          <div class="col-md-6">
+            <div class="product-details">
+              <!-- Product Name -->
+              <h4 class="product-name mb-3">{{ selectedProduct.name }}</h4>
+              
+              <!-- Product Description -->
+              <div class="mb-3">
+                <h6 class="text-muted">Description</h6>
+                <p class="product-description">{{ selectedProduct.description }}</p>
+              </div>
+              
+              <!-- Product URL -->
+              <div class="mb-3">
+                <h6 class="text-muted">Image URL</h6>
+                <a 
+                  [href]="selectedProduct.imageUrl" 
+                  target="_blank" 
+                  class="product-url text-primary text-decoration-none"
+                  title="Open image in new tab"
+                >
+                  <i class="bi bi-link-45deg me-1"></i>
+                  {{ selectedProduct.imageUrl | slice:0:50 }}{{ selectedProduct.imageUrl.length > 50 ? '...' : '' }}
+                </a>
+              </div>
+              
+              <!-- Product Status -->
+              <div class="mb-3">
+                <h6 class="text-muted">Status</h6>
+                <span 
+                  class="badge"
+                  [class]="selectedProduct.isActive ? 'bg-success' : 'bg-secondary'"
+                >
+                  <i class="bi bi-circle-fill me-1"></i>
+                  {{ selectedProduct.isActive ? 'Active' : 'Inactive' }}
+                </span>
+              </div>
+              
+              <!-- Product ID -->
+              <!-- <div class="mb-3">
+                <h6 class="text-muted">Product ID</h6>
+                <code class="product-id">{{ selectedProduct.id }}</code>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          <i class="bi bi-x-lg me-1"></i>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
